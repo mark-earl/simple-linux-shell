@@ -38,6 +38,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <cstdlib>
+#include <sys/wait.h>
 
 #define MAX_ARGS		64
 #define MAX_ARG_LEN		16
@@ -61,7 +63,7 @@ int main(int argc, char *argv[]) {
    char cmdLine[MAX_LINE_LEN];
    struct command_t command;
 
-   while (TRUE) {
+   while (true) {
       printPrompt();
       /* Read the command line and parse it */
       readCommand(cmdLine);
@@ -74,6 +76,56 @@ int main(int argc, char *argv[]) {
 		 execute next
 	  */
 
+     switch(*command.argv) {
+
+      // C file1 file2 Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
+      case 'C':
+         *command.name = 'C';
+         break;
+
+      // D file Delete the named file.
+      case 'D':
+         break;
+
+      // E comment Echo; display comment on screen followed by a new line (multiple
+      // spaces/tabs may be reduced to a single space); if no argument simply
+      // issue a new prompt.
+      case 'E':
+         break;
+
+      // H Help; display the user manual, described below.
+      case 'H':
+         break;
+
+      // L List the contents of the current directory; see below.
+      case 'L':
+         break;
+
+      // M file Make; create the named text file by launching a text editor.
+      case 'M':
+         break;
+
+      // P file Print; display the contents of the named file on screen.
+      case 'P':
+         break;
+
+      // Q Quit the shell.
+      case 'Q':
+         break;
+
+      // S Surf the web by launching a browser as a background process.
+      case 'S':
+         break;
+
+      // W Wipe; clear the screen.
+      case 'W':
+         break;
+
+      // X program Execute the named program.
+      case 'X':
+         break;
+     }
+
       /* Create a child process to execute the command */
       if ((pid = fork()) == 0) {
          /* Child executing command */
@@ -81,7 +133,8 @@ int main(int argc, char *argv[]) {
 	 /* TODO: what happens if you enter an incorrect command? */
       }
       /* Wait for the child to terminate */
-      wait(&status); /* EDIT THIS LINE */
+      waitpid(pid, 0, 0);
+      //wait(&status); /* EDIT THIS LINE */
    }
 
    /* Shell termination */
@@ -129,7 +182,7 @@ void printPrompt() {
    /* Build the prompt string to have the machine name,
     * current directory, or other desired information
     */
-   promptString = ...; /* EDIT THIS LINE */
+   char promptString[] = "linux(mpe12)|>";
    printf("%s ", promptString);
 }
 
