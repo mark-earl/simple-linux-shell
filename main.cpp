@@ -71,60 +71,47 @@ int main(int argc, char *argv[]) {
       command.argv[command.argc] = NULL;
 
 	  /*
-	     TODO: if the command is one of the shortcuts you're testing for
+	    TODO: if the command is one of the shortcuts you're testing for
 		 either execute it directly or build a new command structure to
 		 execute next
 	  */
 
-     switch(*command.argv) {
+      // TODO: C file1 file2 Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
+      if (*command.name == 'C') {}
 
-      // C file1 file2 Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
-      case 'C':
-         *command.name = 'C';
-         break;
+      // TODO: D file Delete the named file.
+      else if (*command.name == 'D') {}
 
-      // D file Delete the named file.
-      case 'D':
-         break;
-
-      // E comment Echo; display comment on screen followed by a new line (multiple
+      // TODO: E comment Echo; display comment on screen followed by a new line (multiple
       // spaces/tabs may be reduced to a single space); if no argument simply
       // issue a new prompt.
-      case 'E':
-         break;
+      else if (*command.name == 'E') {}
 
-      // H Help; display the user manual, described below.
-      case 'H':
-         break;
+      // TODO: H Help; display the user manual, described below.
+      else if (*command.name == 'H') {}
 
-      // L List the contents of the current directory; see below.
-      case 'L':
-         break;
+      // TODO: L List the contents of the current directory; see below.
+      else if (*command.name == 'L') {}
 
-      // M file Make; create the named text file by launching a text editor.
-      case 'M':
-         break;
+      // TODO: M file Make; create the named text file by launching a text editor.
+      else if (*command.name == 'M') {}
 
-      // P file Print; display the contents of the named file on screen.
-      case 'P':
-         break;
+      // TODO: P file Print; display the contents of the named file on screen.
+      else if (*command.name == 'P') {}
 
       // Q Quit the shell.
-      case 'Q':
+      else if (*command.name == 'Q') {
          break;
+      }
 
-      // S Surf the web by launching a browser as a background process.
-      case 'S':
-         break;
+      // TODO: S Surf the web by launching a browser as a background process.
+      else if (*command.name == 'S') {}
 
-      // W Wipe; clear the screen.
-      case 'W':
-         break;
+      // TODO: W Wipe; clear the screen.
+      else if (*command.name == 'W') {}
 
-      // X program Execute the named program.
-      case 'X':
-         break;
-     }
+      // TODO: X program Execute the named program.
+      else if (*command.name == 'X') {}
 
       /* Create a child process to execute the command */
       if ((pid = fork()) == 0) {
