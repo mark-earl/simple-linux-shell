@@ -80,11 +80,15 @@ int main(int argc, char *argv[]) {
          execute next
 	  */
 
-      // TODO: C file1 file2 Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
-      if (*command.name == 'C') {}
+      // C file1 file2 Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
+      if (*command.name == 'C') {
+         strcpy(command.name, "cp");
+      }
 
-      // TODO: D file Delete the named file.
-      else if (*command.name == 'D') {}
+      // D file Delete the named file.
+      else if (*command.name == 'D') {
+         strcpy(command.name, "rm");
+      }
 
       // TODO: E comment Echo; display comment on screen followed by a new line (multiple
       // spaces/tabs may be reduced to a single space); if no argument simply
@@ -97,11 +101,15 @@ int main(int argc, char *argv[]) {
       // TODO: L List the contents of the current directory; see below.
       else if (*command.name == 'L') {}
 
-      // TODO: M file Make; create the named text file by launching a text editor.
-      else if (*command.name == 'M') {}
+      // M file Make; create the named text file by launching a text editor.
+      else if (*command.name == 'M') {
+         strcpy(command.name, "nano");
+      }
 
-      // TODO: P file Print; display the contents of the named file on screen.
-      else if (*command.name == 'P') {}
+      // P file Print; display the contents of the named file on screen.
+      else if (*command.name == 'P') {
+         strcpy(command.name, "more");
+      }
 
       // Q Quit the shell.
       else if (*command.name == 'Q') {
@@ -111,7 +119,7 @@ int main(int argc, char *argv[]) {
       // TODO: S Surf the web by launching a browser as a background process.
       else if (*command.name == 'S') {}
 
-      // TODO: W Wipe; clear the screen.
+      // W Wipe; clear the screen.
       else if (*command.name == 'W') {
          strcpy(command.name, "clear");
       }
