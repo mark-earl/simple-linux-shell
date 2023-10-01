@@ -1,8 +1,8 @@
 # makefile for nqmq-mark-earl
 # Refer to BUILD.md for instructions
 
-CC = g++
-FLAGS = -std=c++11
+CC = gcc
+FLAGS = -Wall
 
 all: shell.out clean
 

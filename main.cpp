@@ -63,6 +63,10 @@ int main(int argc, char *argv[]) {
    char cmdLine[MAX_LINE_LEN];
    struct command_t command;
 
+   // TODO empty array of strings as args
+   // char args[1][1];
+   // args[0][0] = '\0';
+
    while (true) {
       printPrompt();
       /* Read the command line and parse it */
@@ -71,9 +75,9 @@ int main(int argc, char *argv[]) {
       command.argv[command.argc] = NULL;
 
 	  /*
-	    TODO: if the command is one of the shortcuts you're testing for
-		 either execute it directly or build a new command structure to
-		 execute next
+         TODO: if the command is one of the shortcuts you're testing for
+         either execute it directly or build a new command structure to
+         execute next
 	  */
 
       // TODO: C file1 file2 Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
@@ -108,20 +112,42 @@ int main(int argc, char *argv[]) {
       else if (*command.name == 'S') {}
 
       // TODO: W Wipe; clear the screen.
-      else if (*command.name == 'W') {}
+      else if (*command.name == 'W') {
+         strcpy(command.name, "wipe");
+      }
 
       // TODO: X program Execute the named program.
       else if (*command.name == 'X') {}
 
+      // Handle unrecognized commands
+      else {
+         if (strlen(command.name) != 0) {
+            printf("Unrecognized command: %s\n", command.name);
+            continue;
+         }
+      }
+
       /* Create a child process to execute the command */
       if ((pid = fork()) == 0) {
          /* Child executing command */
-         execvp(command.name, command.argv);
-	 /* TODO: what happens if you enter an incorrect command? */
+
+         // Check if the command name is not empty and is valid
+         if (strlen(command.name) > 0) {
+            if ((status = execvp(command.name, command.argv)) == -1) {
+               perror("Error");
+               exit(EXIT_FAILURE); // Exit the child process with an error code
+            }
+         }
+
+         // If the command name is empty (just pressing 'Enter') or an unknown command, exit the child process with success
+         else {exit(EXIT_SUCCESS);}
+
+      return 0;
       }
+
+
       /* Wait for the child to terminate */
-      waitpid(pid, 0, 0);
-      //wait(&status); /* EDIT THIS LINE */
+      wait(NULL);
    }
 
    /* Shell termination */
