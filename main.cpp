@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
 
       // TODO: W Wipe; clear the screen.
       else if (*command.name == 'W') {
-         strcpy(command.name, "wipe");
+         strcpy(command.name, "clear");
       }
 
       // TODO: X program Execute the named program.
