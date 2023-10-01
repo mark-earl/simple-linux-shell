@@ -1,6 +1,8 @@
 # makefile for nqmq-mark-earl
 # Refer to BUILD.md for instructions
 
+# TODO limit threads
+
 CC = gcc
 FLAGS = -Wall
 
