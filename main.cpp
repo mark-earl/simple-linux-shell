@@ -94,9 +94,12 @@ int main(int argc, char *argv[]) {
       // spaces/tabs may be reduced to a single space); if no argument simply
       // issue a new prompt.
       else if (*command.name == 'E') {
-         if(*command.argv[1]) {
-            printf("%s", command.argv[1]);
-            printf("%s", "\n");
+
+         // if no argument simply issue a new prompt.
+         if (command.argc > 1) {
+            for (int i = 1; i < command.argc; ++i)
+               printf("%s", command.argv[i]);
+            printf("\n");
          }
          continue;
       }
