@@ -65,10 +65,6 @@ int main(int argc, char *argv[])
    char cmdLine[MAX_LINE_LEN];
    struct command_t command;
 
-   // TODO: empty array of strings as args
-   // char args[1][1];
-   // args[0][0] = '\0';
-
    bool done = false;
    while (!done)
    {
@@ -77,6 +73,17 @@ int main(int argc, char *argv[])
       readCommand(cmdLine);
       parseCommand(cmdLine, &command);
       command.argv[command.argc] = NULL;
+
+      // If you are not passing any command line arguments, you should define an empty array of strings and pass
+      // that as args.
+      if (command.argc == 1)
+      {
+         char *args[] = {NULL};
+         for (int i = 0; i < MAX_ARGS; ++i)
+         {
+            command.argv[i] = args[i];
+         }
+      }
 
       /*
          This shell directly supports the following internal commands:
@@ -132,7 +139,8 @@ int main(int argc, char *argv[])
 
       // TODO: H Help; display the user manual, described below.
       case 'H':
-         // Handle 'H' case here
+         strcpy(command.name, "man");
+         strcpy(command.argv[1], "./manpage.1");
          break;
 
       // TODO: L List the contents of the current directory; see below.
@@ -175,6 +183,8 @@ int main(int argc, char *argv[])
       default:
          break;
       }
+
+      // If the user did not request to quit the shell, attempt execution
       if (!done)
       {
          /* Create a child process to execute the command */
