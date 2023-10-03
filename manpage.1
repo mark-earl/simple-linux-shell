@@ -1,0 +1,71 @@
+.TH SHELLCOMMANDS 1 "COPYRIGHT October 2023" "Simple Linux Shell"
+
+.SH NAME
+Simple Linux Shell - Shell internal commands
+
+.SH SYNOPSIS
+.B linux(mpe12)|>[COMMAND] [ARGS]
+
+.SH DESCRIPTION
+The
+.B Simple Linux Shell
+manual page describes the internal commands supported by your custom shell.
+
+All commands are case-sensitive. If a command is not recognized as an internal command, it will be passed to
+the
+.B execvp()
+function for normal execution.
+
+.PP
+.B C file1 file2
+Copy; create file2, copy all bytes of file1 to file2 without deleting file1.
+
+.PP
+.B D file
+Delete the named file.
+
+.PP
+.B E comment
+Echo; display comment on the screen followed by a new line (multiple spaces/tabs may be reduced to a single space).
+If no argument is provided, it will simply issue a new prompt.
+
+.PP
+.B H
+Help; display the user manual.
+
+.PP
+.B L
+List the contents of the current directory.
+
+.PP
+.B M file
+Make; create the named text file by launching a text editor.
+
+.PP
+.B P file
+Print; display the contents of the named file on the screen.
+
+.PP
+.B Q
+Quit the shell.
+
+.PP
+.B S
+Surf the web by launching a browser as a background process.
+
+.PP
+.B W
+Wipe; clear the screen.
+
+.PP
+.B X program
+Execute the named program.
+
+.SH AUTHOR
+Mark Earl
+
+.SH REPORTING BUGS
+Please report bugs to mpe12@uakron.edu.
+
+.SH NOTES
+This manual page is provided as-is, without any guarantees or warranties. Use it at your own risk.
