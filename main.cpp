@@ -93,7 +93,13 @@ int main(int argc, char *argv[]) {
       // TODO: E comment Echo; display comment on screen followed by a new line (multiple
       // spaces/tabs may be reduced to a single space); if no argument simply
       // issue a new prompt.
-      else if (*command.name == 'E') {}
+      else if (*command.name == 'E') {
+         if(*command.argv[1]) {
+            printf("%s", command.argv[1]);
+            printf("%s", "\n");
+         }
+         continue;
+      }
 
       // TODO: H Help; display the user manual, described below.
       else if (*command.name == 'H') {}
