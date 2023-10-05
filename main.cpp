@@ -140,7 +140,10 @@ int main(int argc, char *argv[])
       // TODO: H Help; display the user manual, described below.
       case 'H':
          strcpy(command.name, "man");
+         command.argv[0] = (char *)"man";
+         command.argv[1] = (char *)malloc(12);
          strcpy(command.argv[1], "./manpage.1");
+         command.argv[2] = NULL;
          break;
 
       // TODO: L List the contents of the current directory; see below.
