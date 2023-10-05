@@ -93,8 +93,8 @@ int main(int argc, char *argv[])
          • E comment Echo; display comment on screen followed by a new line (multiple
              spaces/tabs may be reduced to a single space); if no argument simply
              issue a new prompt.
-         • H Help; display the user manual, described below.
-         • L List the contents of the current directory; see below.
+         • H Help; display the user manual.
+         • L List the contents of the current directory.
          • M file Make; create the named text file by launching a text editor.
          • P file Print; display the contents of the named file on screen.
          • Q Quit the shell.
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
          }
          continue;
 
-      // TODO: H Help; display the user manual, described below.
+      // H Help; display the user manual
       case 'H':
          strcpy(command.name, "man");
          command.argv[0] = (char *)"man";
