@@ -146,10 +146,64 @@ int main(int argc, char *argv[])
          command.argv[2] = NULL;
          break;
 
-      // TODO: L List the contents of the current directory; see below.
+      // TODO: L List the contents of the current directory.
       case 'L':
-         // Handle 'L' case here
-         break;
+
+      {
+         printf("\n");
+
+         // Create a child process for 'pwd'
+         int pid_pwd = fork();
+         if (pid_pwd == 0)
+         {
+            // Child process for 'pwd'
+            strcpy(command.name, "pwd");
+            status = execvp(command.name, command.argv);
+            if (status == -1)
+            {
+               perror("Error");
+               exit(EXIT_FAILURE);
+            }
+         }
+         else if (pid_pwd < 0)
+         {
+            perror("Fork error");
+         }
+         else
+         {
+            // Parent process
+            waitpid(pid_pwd, NULL, 0); // Wait for the 'pwd' command to finish
+         }
+
+         printf("\n");
+
+         // Create another child process for 'ls -l'
+         int pid_ls = fork();
+         if (pid_ls == 0)
+         {
+            // Child process for 'ls -l'
+            strcpy(command.name, "ls");
+            command.argv[0] = (char *)"ls";
+            command.argv[1] = (char *)"-l";
+            command.argv[2] = NULL;
+            status = execvp(command.name, command.argv);
+            if (status == -1)
+            {
+               perror("Error");
+               exit(EXIT_FAILURE);
+            }
+         }
+         else if (pid_ls < 0)
+         {
+            perror("Fork error");
+         }
+         else
+         {
+            // Parent process
+            waitpid(pid_ls, NULL, 0); // Wait for the 'ls -l' command to finish
+         }
+         continue;
+      }
 
       // M file Make; create the named text file by launching a text editor.
       case 'M':
