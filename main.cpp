@@ -219,12 +219,9 @@ int main(int argc, char *argv[])
          done = true;
          break;
 
-      // TODO: S Surf the web by launching a browser as a background process.
+      // S Surf the web by launching a browser as a background process.
       case 'S':
          strcpy(command.name, "firefox");
-         command.argv[0] = (char *)"firefox";
-         command.argv[1] = (char *)"&";
-         command.argv[2] = NULL;
          break;
 
       // W Wipe; clear the screen.
@@ -273,7 +270,10 @@ int main(int argc, char *argv[])
       }
 
       /* Wait for the child to terminate */
-      wait(NULL);
+      if (strcmp(command.name, "firefox") != 0)
+      {
+         wait(NULL);
+      }
    }
 
    /* Shell termination */
