@@ -123,6 +123,10 @@ int main(int argc, char *argv[])
       // spaces/tabs may be reduced to a single space); if no argument simply
       // issue a new prompt.
       case 'E':
+         strcpy(command.name, "echo");
+         break;
+
+         /* alternative implementation
          if (command.argc > 1)
          {
             for (int i = 1; i < command.argc; ++i)
@@ -135,7 +139,7 @@ int main(int argc, char *argv[])
             }
             printf("\n");
          }
-         continue;
+         continue; */
 
       // H Help; display the user manual
       case 'H':
@@ -269,7 +273,7 @@ int main(int argc, char *argv[])
          }
       }
 
-      /* Wait for the child to terminate */
+      /* Wait for the child to terminate, with one exception, allow Firefox to run in background */
       if (strcmp(command.name, "firefox") != 0)
       {
          wait(NULL);
