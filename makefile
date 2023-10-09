@@ -14,8 +14,6 @@ clean:
 	@rm -f *~
 	@rm -f \#*
 
-run: chmod_run
-	@./shell.out
-
-chmod_run:
+run:
 	@chmod +x ./shell.out
+	@./shell.out
