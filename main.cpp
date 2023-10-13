@@ -126,21 +126,6 @@ int main(int argc, char *argv[])
          strcpy(command.name, "echo");
          break;
 
-         /* alternative implementation
-         if (command.argc > 1)
-         {
-            for (int i = 1; i < command.argc; ++i)
-            {
-               // Insert a single space between the arguments
-               if (i != 1 && i != (argc - 1))
-                  printf(" ");
-
-               printf("%s", command.argv[i]);
-            }
-            printf("\n");
-         }
-         continue; */
-
       // H Help; display the user manual
       case 'H':
          strcpy(command.name, "man");
