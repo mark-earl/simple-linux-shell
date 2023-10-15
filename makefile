@@ -2,21 +2,21 @@
 # Refer to README.md for build instructions
 
 CC = gcc
-FLAGS = -Wall
+CFLAGS = -Wall
 
-all: shell.out clean
+all: shell.out
 
-shell.out: main.cpp
-	@${CC} ${FLAGS} main.cpp -o shell.out
+shell.out: main.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+run: shell.out
+	./shell.out
 
 clean:
-	@rm -f *.o
-	@rm -f *~
-	@rm -f \#*
+	rm -f shell.out
 
-run:
-	@chmod +x ./shell.out
-	@./shell.out
+.PHONY: clean
+
 
 # NOTE: I did not include a ulimit command because on all platoforms that I tested
 # I kept getting an error when running the -u argument with ulimit. This shell is
